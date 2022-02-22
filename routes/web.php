@@ -15,8 +15,11 @@ use App\Http\Controllers\LoginController;
 */
 
 Route::get('/', function () {
-    return view('layouts.home');
-});
+    return view('init');
+})->name('index');
 
 
-Route::get('/login', [LoginController::class, 'create'])->name('login.index');
+Route::get('/login', [LoginController::class, 'create'])->name('login.index')->middleware('loggedIn');
+Route::post('/login-user', [LoginController::class, 'loginUser'])->name('login-user');
+Route::get('/dashboard', [LoginController::class, 'dashb'])->middleware('isLoggedIn');
+Route::get('/logout', [LoginController::class, 'logout']);
