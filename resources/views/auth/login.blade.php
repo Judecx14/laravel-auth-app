@@ -5,7 +5,7 @@
 @section('content')
 <!--border-2 border-violet-400-->
 <div>
-    <div class="grid gap-4 mx-auto text-center border-2 border-violet-400  my-24 px-9 py-3 font-sans place-content-center max-h-fit  rounded-3xl w-1/3">
+    <div class="grid gap-4 mx-auto text-center border-1 border-violet-400 shadow-2xl  my-24 px-9 py-3 font-sans place-content-center max-h-fit  rounded-3xl w-1/3">
 
         <form action="api/v1/generate-code" method="POST" class="mt-4 bg-transparent text-base ">
             @if(session()->has('success'))
