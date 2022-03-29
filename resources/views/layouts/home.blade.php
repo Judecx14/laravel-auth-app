@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title') Secure app </title>
+    <title>Titulo Custom</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 

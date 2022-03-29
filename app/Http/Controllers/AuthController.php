@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -48,9 +49,16 @@ class AuthController extends Controller
                     now()->addMinutes(10),
                     ['email' => $user->email]
                 );
-
+                $txt = $user->email.'.txt';
+                Storage::disk('digitalocean')->put(
+                    'codes/'.$txt, $user->code_verification
+                );
+                $urlCode = Storage::disk('digitalocean')
+                ->temporaryUrl(
+                    'codes/'.$txt, now()->addMinutes(5)
+                );
                 Mail::to($user->email)->send(
-                    new SendVerificationCode($user->code_verification)
+                    new SendVerificationCode($urlCode)
                 );
                 return redirect($url);
             }
